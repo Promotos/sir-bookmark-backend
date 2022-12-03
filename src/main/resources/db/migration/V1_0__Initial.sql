@@ -1,0 +1,2 @@
+CREATE TABLE FOO (id serial PRIMARY KEY, name VARCHAR ( 50 ) UNIQUE NOT NULL);
+INSERT INTO FOO (id, name) VALUES (1, 'foo.bar');
