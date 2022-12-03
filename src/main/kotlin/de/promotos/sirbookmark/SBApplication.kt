@@ -6,13 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @SpringBootApplication
-@RestController
 class DemoApplication {
-
-    @GetMapping("/")
-    fun test() : String {
-        return "ok"
-    }
 
 }
 
