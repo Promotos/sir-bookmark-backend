@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html th:replace="~{fragments/layout :: layout (~{::body},'index')}" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div class="container text-center">
+    <h1>Please Log In</h1>
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+    <form method="post" th:action="@{/login}">
+        <div>
+            <input name="username" placeholder="Username" type="text"/>
+        </div>
+        <div>
+            <input name="password" placeholder="Password" type="password"/>
+        </div>
+        <input type="submit" value="Log in"/>
+    </form>
+</div>
+
+</body>
+</html>

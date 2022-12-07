@@ -2,15 +2,63 @@ package de.promotos.sirbookmark.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer
+import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer
+import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.core.userdetails.User
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
+import org.springframework.security.web.SecurityFilterChain
 import javax.sql.DataSource
+
 
 @Configuration
 @EnableWebSecurity
 class SecurityConfig {
+
+    @Bean
+    @Throws(Exception::class)
+    fun filterChain(http: HttpSecurity): SecurityFilterChain? {
+        http.sessionManagement { session: SessionManagementConfigurer<HttpSecurity?> ->
+            session.sessionCreationPolicy(
+                SessionCreationPolicy.ALWAYS
+            )
+        }
+
+        http.sessionManagement { session: SessionManagementConfigurer<HttpSecurity?> ->
+            session.maximumSessions(
+                1
+            ).maxSessionsPreventsLogin(true)
+        }
+
+        http.sessionManagement { session: SessionManagementConfigurer<HttpSecurity?> ->
+            session.invalidSessionUrl(
+                "/index"
+            )
+        }
+
+        http.authorizeHttpRequests { authorizeHttpRequests ->
+            authorizeHttpRequests.requestMatchers("/**").permitAll()
+            authorizeHttpRequests.requestMatchers("/user/**").hasRole("USER").and().formLogin()
+        }
+
+        http.formLogin { form: FormLoginConfigurer<HttpSecurity?> ->
+            form.loginPage(
+                "/login"
+            ).defaultSuccessUrl("/", true)
+                .permitAll()
+        }
+
+        http.logout { logout: LogoutConfigurer<HttpSecurity?> ->
+            logout.deleteCookies(
+                "JSESSIONID"
+            )
+        }
+        return http.build()
+    }
 
     @Bean
     fun users(dataSource: DataSource): UserDetailsManager {
@@ -35,7 +83,7 @@ class SecurityConfig {
         if (!users.userExists(user.username)) {
             users.createUser(user)
         }
-        
+
         return users
     }
 
