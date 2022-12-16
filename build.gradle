@@ -7,6 +7,8 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.spring' version '1.7.21'
 }
 
+apply plugin: 'org.springframework.boot'
+
 group = 'de.promotos.sirbookmark'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
@@ -14,6 +16,10 @@ targetCompatibility = '17'
 
 repositories {
     mavenCentral()
+}
+
+springBoot {
+    buildInfo()
 }
 
 dependencies {
