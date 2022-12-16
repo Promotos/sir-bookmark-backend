@@ -49,6 +49,7 @@ class SecurityConfig {
             form.loginPage(
                 "/login"
             ).defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/index.html")
                 .permitAll()
         }
 
