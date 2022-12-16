@@ -19,7 +19,6 @@ repositories {
 }
 
 springBoot {
-    
     buildInfo()
 }
 
