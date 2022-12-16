@@ -17,10 +17,6 @@
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a class="nav-link px-2 text-white" href="/">Home</a></li>
-                    <li><a class="nav-link px-2 text-white" href="#">Features</a></li>
-                    <li><a class="nav-link px-2 text-white" href="#">Pricing</a></li>
-                    <li><a class="nav-link px-2 text-white" href="#">FAQs</a></li>
-                    <li><a class="nav-link px-2 text-white" href="#">About</a></li>
                 </ul>
 
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -42,7 +38,7 @@
 <div class="container">
     <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
-            <span class="mb-3 mb-md-0 text-muted">© <span th:text="${#dates.format(new java.util.Date(), 'yyyy')}"/> by Promotos </span>
+            <span class="mb-3 mb-md-0 text-muted">V <span th:text="${version}"/> © <span th:text="${#dates.format(new java.util.Date(), 'yyyy')}"/> by Promotos </span>
         </div>
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
             <li class="ms-3">
