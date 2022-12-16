@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.ModelAttribute
 class BaseController {
 
     @Autowired
-    var buildProperties: BuildProperties? = null
+    lateinit var buildProperties: BuildProperties
 
     /**
      * Return the version number defined in the build gradle file.
      */
     @ModelAttribute("version")
     fun getVersion(): String {
-        return buildProperties!!.version
+        return buildProperties.version
     }
 
     @ModelAttribute("buildTimestamp")
     fun getBuildTimestamp(): String {
-        return buildProperties!!.time.toString()
+        return buildProperties.time.toString()
     }
 }
