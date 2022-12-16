@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 /**
  * Used to check if the server is able to respond to a REST call.
  */
-class Healthcheck {
+class Healthcheck : BaseController() {
 
     /**
      * Health check endpoint, simply returns the string 'ok' with

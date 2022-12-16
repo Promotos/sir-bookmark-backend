@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.servlet.ModelAndView
 
 @Controller
-class LoginController {
+class LoginController : BaseController() {
 
     @GetMapping("/login")
     fun loginView(model: Model): ModelAndView {
