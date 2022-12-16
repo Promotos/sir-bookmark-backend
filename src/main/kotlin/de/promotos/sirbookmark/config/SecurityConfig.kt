@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.User
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import javax.sql.DataSource
 
 
@@ -26,12 +27,6 @@ class SecurityConfig {
             session.sessionCreationPolicy(
                 SessionCreationPolicy.ALWAYS
             )
-        }
-
-        http.sessionManagement { session: SessionManagementConfigurer<HttpSecurity?> ->
-            session.maximumSessions(
-                1
-            ).maxSessionsPreventsLogin(true)
         }
 
         http.sessionManagement { session: SessionManagementConfigurer<HttpSecurity?> ->
@@ -54,9 +49,8 @@ class SecurityConfig {
         }
 
         http.logout { logout: LogoutConfigurer<HttpSecurity?> ->
-            logout.deleteCookies(
-                "JSESSIONID"
-            )
+            logout.logoutRequestMatcher(AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/index.html")
         }
         return http.build()
     }
