@@ -25,8 +25,16 @@
                 </form>
 
                 <div class="text-end">
-                    <button class="btn btn-outline-light me-2" type="button">Login</button>
-                    <button class="btn btn-warning" type="button">Sign-up</button>
+                    <a href="/login">
+                        <button class="btn btn-outline-light me-2" th:if="${isLoggedIn == false}" type="button">Login</button>
+                    </a>
+
+                    <span th:if="${isLoggedIn == true}" th:text="${'Hello ' + loggedInUserName}"/>
+
+                    <a href="/logout">
+                        <button class="btn btn-outline-light me-2" th:if="${isLoggedIn == true}" type="button">Logout</button>
+                    </a>
+                    <button class="btn btn-warning" th:if="${isLoggedIn == false}" type="button">Sign-up</button>
                 </div>
             </div>
         </div>
