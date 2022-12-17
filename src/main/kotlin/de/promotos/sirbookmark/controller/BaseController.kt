@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute
 class BaseController {
 
     @Autowired
-    var buildProperties: BuildProperties? = null;
+    var buildProperties: BuildProperties? = null
 
     /**
      * Return the version number defined in the build gradle file.
@@ -37,12 +37,12 @@ class BaseController {
 
     @ModelAttribute("isLoggedIn")
     fun isLoggedIn(): Boolean {
-        val authentication: Authentication = SecurityContextHolder.getContext().authentication
-        return (!(authentication is AnonymousAuthenticationToken))
+        val authentication: Authentication? = SecurityContextHolder.getContext().authentication
+        return (authentication !is AnonymousAuthenticationToken)
     }
 
     @ModelAttribute("loggedInUserName")
     fun getLoggedInUserName(): String {
-        return SecurityContextHolder.getContext().authentication.name
+        return SecurityContextHolder.getContext().authentication?.name ?: ""
     }
 }
