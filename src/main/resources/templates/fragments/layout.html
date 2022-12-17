@@ -36,7 +36,10 @@
                     <a href="/logout">
                         <button class="btn btn-outline-light me-2" th:if="${isLoggedIn == true}" type="button">Logout</button>
                     </a>
-                    <button class="btn btn-warning" th:if="${isLoggedIn == false}" type="button">Sign-up</button>
+
+                    <a href="/create_user">
+                        <button class="btn btn-warning" th:if="${isLoggedIn == false}" type="button">Sign-up</button>
+                    </a>
                 </div>
             </div>
         </div>
