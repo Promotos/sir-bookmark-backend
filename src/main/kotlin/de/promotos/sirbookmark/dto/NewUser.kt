@@ -16,6 +16,7 @@ data class NewUser(
     val email: String = "",
 
     @get: NotBlank(message = "{newUser.password.required}")
+    @get: Size(min = 5, max = 20, message = "{newUser.password.size}")
     val password: String = "",
 
     @get: NotBlank(message = "{newUser.passwordRepeat.required}")
@@ -27,9 +28,11 @@ data class NewUser(
     var challengeCorrectAnswer: Int = 0
 ) {
     init {
-        val challenge = ChallengeGenerator().newChallenge()
-        challengeDesc = challenge.first
-        challengeCorrectAnswer = challenge.second
+        if (challengeCorrectAnswer == 0) {
+            val challenge = ChallengeGenerator().newChallenge()
+            challengeDesc = challenge.first
+            challengeCorrectAnswer = challenge.second
+        }
     }
 
 }

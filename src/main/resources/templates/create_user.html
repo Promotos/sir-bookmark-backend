@@ -54,6 +54,8 @@
                            type="number">
                     <label for="floatingChallenge" th:text="*{challengeDesc}">...</label>
                 </div>
+                <input name="id1" th:field="*{challengeCorrectAnswer}" type="hidden"/>
+                <input name="id2" th:field="*{challengeDesc}" type="hidden"/>
                 <button class="mb-3 w-100 btn btn-lg btn-primary" type="submit">Create Account</button>
 
                 <div class="form-floating" th:each="err: ${errors}" th:text="${err}"></div>
