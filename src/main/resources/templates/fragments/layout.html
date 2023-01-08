@@ -29,17 +29,9 @@
                 </form>
 
                 <div class="text-end">
-                    <a href="/login">
-                        <button class="btn btn-outline-light me-2" th:if="${isLoggedIn == false}" type="button">Login</button>
-                    </a>
-
-                    <a href="/logout">
-                        <button class="btn btn-outline-light me-2" th:if="${isLoggedIn == true}" type="button">Logout</button>
-                    </a>
-
-                    <a href="/create_user">
-                        <button class="btn btn-warning" th:if="${isLoggedIn == false}" type="button">Sign-up</button>
-                    </a>
+                    <a class="btn btn-outline-light me-2" href="/login" th:if="${isLoggedIn == false}">Login</a>
+                    <a class="btn btn-outline-light me-2" href="/logout" th:if="${isLoggedIn == true}">Logout</a>
+                    <a class="btn btn-warning" href="/create_user" th:if="${isLoggedIn == false}">Sign-up</a>
                 </div>
             </div>
         </div>
