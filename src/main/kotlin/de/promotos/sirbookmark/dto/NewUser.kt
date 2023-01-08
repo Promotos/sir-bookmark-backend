@@ -1,6 +1,6 @@
 package de.promotos.sirbookmark.dto
 
-import de.promotos.sirbookmark.business.ChallengeGenerator
+import de.promotos.sirbookmark.bean.ChallengeGenerator
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Positive
