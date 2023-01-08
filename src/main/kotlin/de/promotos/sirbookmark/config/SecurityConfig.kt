@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configurers.FormLoginC
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer
 import org.springframework.security.config.annotation.web.configurers.SessionManagementConfigurer
 import org.springframework.security.config.http.SessionCreationPolicy
-import org.springframework.security.core.userdetails.User
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.JdbcUserDetailsManager
@@ -64,29 +63,7 @@ class SecurityConfig {
 
     @Bean
     fun users(dataSource: DataSource): UserDetailsManager {
-        val user = User.builder()
-            .username("user")
-            .password("{bcrypt}$2a$10\$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-            .roles("USER")
-            .build()
-
-        val admin = User.builder()
-            .username("admin")
-            .password("{bcrypt}$2a$10\$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-            .roles("USER", "ADMIN")
-            .build()
-
-        val users = JdbcUserDetailsManager(dataSource)
-
-        if (!users.userExists(admin.username)) {
-            users.createUser(admin)
-        }
-
-        if (!users.userExists(user.username)) {
-            users.createUser(user)
-        }
-
-        return users
+        return JdbcUserDetailsManager(dataSource)
     }
 
 }
