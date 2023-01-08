@@ -42,8 +42,8 @@ class SecurityConfig {
         }
 
         http.authorizeHttpRequests { authorizeHttpRequests ->
+            authorizeHttpRequests.requestMatchers("/u/**").hasRole("USER").and().formLogin()
             authorizeHttpRequests.requestMatchers("/**").permitAll()
-            authorizeHttpRequests.requestMatchers("/user/**").hasRole("USER").and().formLogin()
         }
 
         http.formLogin { form: FormLoginConfigurer<HttpSecurity?> ->
