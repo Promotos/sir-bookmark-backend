@@ -49,8 +49,7 @@ class SecurityConfig {
         http.formLogin { form: FormLoginConfigurer<HttpSecurity?> ->
             form.loginPage(
                 "/login"
-            ).defaultSuccessUrl("/", true)
-                .defaultSuccessUrl("/index.html")
+            ).defaultSuccessUrl("/u/collection", true)
                 .permitAll()
         }
 
